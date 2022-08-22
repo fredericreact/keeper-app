@@ -12,6 +12,7 @@ function App () {
     return(
         <div>
         <Header/>
+        <CreateArea />
         {notes.map(noteItem => 
         <Note
         key={noteItem.key}
