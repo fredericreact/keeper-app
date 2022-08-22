@@ -1,23 +1,47 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
-import notes from "../notes";
+
 import CreateArea from "./CreateArea";
 
 
-
 function App () {
-    console.log(notes[1].title);
+
+
+
+const [newItem, setNewItem] =useState([]);
+
+function addNote(note){
+
+setNewItem([...newItem,note])
+}
+
+
+function supprimeNote(id){
+setNewItem(newItem.filter((item,index) =>{
+    return index !==id;
+}))
+        
+
+
+    
+    }
+
     return(
         <div>
         <Header/>
-        <CreateArea />
-        {notes.map(noteItem => 
+        <CreateArea 
+            addNote={addNote}
+        />
+        {newItem.map((noteItem,index) => 
         <Note
-        key={noteItem.key}
+        
+        key={index}
+        id={index}
         title={noteItem.title}
         content={noteItem.content}
+        supprimeNote={supprimeNote}
         />
 
 
