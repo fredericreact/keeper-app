@@ -12,7 +12,12 @@ content:""
 
 }); 
 
+const [isExpanded, setExpanded] = useState(false);
 
+function  expand (){
+setExpanded(true);
+ 
+}
 
 function  handleChange (event){
     const {name,value} = event.target
@@ -37,10 +42,10 @@ function submitNote(event){
   return (
     <div>
       <form className="create-note" onSubmit={submitNote}>
-        <input onChange={handleChange} value ={note.title} name="title" placeholder="Title" />
-        <textarea onChange={handleChange} value ={note.content}  name="content" placeholder="Take a note..." rows="3" />
-       <Zoom in={true}>
-        <Fab type="submit"><AddIcon/></Fab>
+        {isExpanded && (<input onChange={handleChange} value ={note.title} name="title" placeholder="Title" /> )}
+        <textarea onClick={expand} onChange={handleChange} value ={note.content}  name="content" placeholder="Take a note..." rows={isExpanded ? 3 :1} />
+        <Zoom in={isExpanded}>
+       <Fab type="submit"><AddIcon/></Fab> 
 </Zoom>
       </form>
     </div>
