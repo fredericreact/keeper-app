@@ -10,16 +10,16 @@ function App () {
 
 
 
-const [newItem, setNewItem] =useState([]);
+const [notes, setNotes] =useState([]);
 
-function addNote(note){
+function addNote(newNote){
 
-setNewItem([...newItem,note])
+setNotes([...notes,newNote])
 }
 
 
-function supprimeNote(id){
-setNewItem(newItem.filter((item,index) =>{
+function deleteNote(id){
+setNotes(notes.filter((item,index) =>{
     return index !==id;
 }))
         
@@ -32,16 +32,16 @@ setNewItem(newItem.filter((item,index) =>{
         <div>
         <Header/>
         <CreateArea 
-            addNote={addNote}
+            onAdd={addNote}
         />
-        {newItem.map((noteItem,index) => 
+        {notes.map((noteItem,index) => 
         <Note
         
         key={index}
         id={index}
         title={noteItem.title}
         content={noteItem.content}
-        supprimeNote={supprimeNote}
+        onDelete={deleteNote}
         />
 
 

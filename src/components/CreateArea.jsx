@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 function CreateArea(props) {
 
-const [inputText, setInputText] = useState({
+const [note, setNote] = useState({
 title:"",
 content:""
 
@@ -10,24 +10,18 @@ content:""
 
 
 
-function inputChange (e){
-    const {name,value} = e.target
-   if (name==="title") {
-    setInputText({
-        ...inputText,
-        title:value});
-   }else {
-    setInputText({
-        ...inputText,
-        content:value});
-   }
+function  handleChange (event){
+    const {name,value} = event.target
+    setNote({
+        ...note,
+        [name]:value});
    
 }
 
 function submitNote(event){
     event.preventDefault();
-    props.addNote(inputText);
-    setInputText({
+    props.onAdd(note);
+    setNote({
       title:"",
       content:""
       
@@ -38,9 +32,9 @@ function submitNote(event){
 
   return (
     <div>
-      <form onSubmit={submitNote}>
-        <input onChange={inputChange} value ={inputText.title} name="title" placeholder="Title" />
-        <textarea onChange={inputChange} value ={inputText.content}  name="content" placeholder="Take a note..." rows="3" />
+      <form className="create-note" onSubmit={submitNote}>
+        <input onChange={handleChange} value ={note.title} name="title" placeholder="Title" />
+        <textarea onChange={handleChange} value ={note.content}  name="content" placeholder="Take a note..." rows="3" />
         <button type="submit">Add</button>
       </form>
     </div>

@@ -3,7 +3,7 @@ import React from "react";
 function Note (props) {
 
 function handleClick(){
-    props.supprimeNote(props.id);
+    props.onDelete(props.id);
 }
 
     return (
