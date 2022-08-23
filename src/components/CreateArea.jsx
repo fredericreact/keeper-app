@@ -1,4 +1,8 @@
 import React, {useState} from "react";
+import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab';
+import Zoom from '@mui/material/Zoom';
+
 
 function CreateArea(props) {
 
@@ -35,7 +39,9 @@ function submitNote(event){
       <form className="create-note" onSubmit={submitNote}>
         <input onChange={handleChange} value ={note.title} name="title" placeholder="Title" />
         <textarea onChange={handleChange} value ={note.content}  name="content" placeholder="Take a note..." rows="3" />
-        <button type="submit">Add</button>
+       <Zoom in={true}>
+        <Fab type="submit"><AddIcon/></Fab>
+</Zoom>
       </form>
     </div>
   );
